@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,6 +58,15 @@ public class SellerController {
 
     return ResponseEntity.created(location).body(seller);
     }
-
+  
+    @DeleteMapping("sellers/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+      Seller seller = sellers.stream()
+                      .filter(s -> s.getId() == id)
+                      .findFirst()
+                      .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found"));
+      sellers.remove(seller);
+      return ResponseEntity.noContent().build();
+    }
   
 }
