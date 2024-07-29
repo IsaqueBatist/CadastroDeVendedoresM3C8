@@ -2,23 +2,23 @@ package dark.com.demo.Models;
 
 public class Seller {
   
-  private Long id;
+  private int id;
   private String name;
   private Double salary;
   private Integer gender;
 
   public Seller() { }
 
-  public Seller(Long id, String name, Double salary, Integer gender){
+  public Seller(int id, String name, Double salary, Integer gender){
     this.id = id;
     this.name = name;
     this.salary = salary;
     this.gender = gender;
   }
-  public Long getId() {
+  public int getId() {
     return id;
   }
-  public void setId(Long id) {
+  public void setId(int id) {
     this.id = id;
   }
   public String getName() {
