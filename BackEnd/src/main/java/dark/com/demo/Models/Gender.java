@@ -7,14 +7,11 @@ public class Gender {
 
 
   
-
   public Gender(int id, String name) {
     this.id = id;
     this.name = name;
   }
-  public Gender() {
-
-  }
+  public Gender() { }
 
   public int getId() {
     return id;

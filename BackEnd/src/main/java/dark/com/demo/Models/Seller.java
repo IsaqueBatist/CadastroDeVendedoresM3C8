@@ -5,11 +5,11 @@ public class Seller {
   private int id;
   private String name;
   private Double salary;
-  private Integer gender;
+  private Gender gender;
 
   public Seller() { }
 
-  public Seller(int id, String name, Double salary, Integer gender){
+  public Seller(int id, String name, Double salary, Gender gender){
     this.id = id;
     this.name = name;
     this.salary = salary;
@@ -33,10 +33,10 @@ public class Seller {
   public void setSalary(Double salary) {
     this.salary = salary;
   }
-  public Integer getGender() {
+  public Gender getGender() {
     return gender;
   }
-  public void setGender(Integer gender) {
+  public void setGender(Gender gender) {
     this.gender = gender;
   }
 }
