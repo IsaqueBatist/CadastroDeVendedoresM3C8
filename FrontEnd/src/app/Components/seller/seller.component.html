@@ -1,7 +1,7 @@
 <div class="d-flex flex-column" style="height: 90vh; justify-content: center; align-items: center; background-image: url('https://img.freepik.com/free-vector/modern-abstract-white-minimal-background_84443-8335.jpg?t=st=1722366549~exp=1722370149~hmac=ecf29135daaafe79d0b000feca3c3e23871b26d0b51f55a4814a2f9755cafa7b&w=1380');">
 
-  <app-sellerform class="w-30" style="height: 60%;" [seller]="seller" [genders]="genders" (saveEmmiter)="saveSeller()"></app-sellerform>
-  <div class="bg-dark shadow p-5 text-white rounded d-flex flex-column justify-content-center" style="width: 800px;">
+  <app-sellerform *ngIf="isFormtoBeShown" class="w-30" style="height: 60%;" [seller]="seller" [genders]="genders" (saveEmmiter)="saveSeller()" (cancelEmmiter)="cancel()"></app-sellerform>
+  <div *ngIf="!isFormtoBeShown" class="bg-dark shadow p-5 text-white rounded d-flex flex-column justify-content-center" style="width: 800px;">
     <div class="display-6 mb-4 text-center fw-semibold">
       Vendedores Cadastrados
     </div>
@@ -35,7 +35,7 @@
                       d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                   </svg>
                 </button>
-                <button type="button" class="btn btn-outline-danger ms-2">
+                <button type="button" (click)="deleteSeller(seller)" class="btn btn-outline-danger ms-2">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-trash3-fill" viewBox="0 0 16 16">
                     <path
@@ -46,6 +46,7 @@
             </tr>
           </tbody>
         </table>
+        <button class="btn btn-light" (click)="isFormtoBeShown = true">Novo</button>
       </div>
     </div>
   </div>

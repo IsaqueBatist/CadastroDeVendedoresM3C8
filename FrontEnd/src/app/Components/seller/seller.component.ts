@@ -16,12 +16,13 @@ import { IGender } from '../../types/gender';
 export class SellerComponent {
 
   seller: ISeller = {} as ISeller
+  idCounter: number = 5
   genders: IGender[] = [
     { id: 1, name: 'Masculino' },
     { id: 2, name: 'Feminino' }
   ]
   isEditing: boolean = false
-
+  isFormtoBeShown: boolean = false
   sellers: ISeller[] = [
     { id: 1, name: 'Seller 1', salary: 1000, gender: { id: 1, name: 'Maculino' } },
     { id: 2, name: 'Seller 2', salary: 1500, gender: { id: 2, name: 'Feminino' } },
@@ -34,13 +35,24 @@ export class SellerComponent {
     if(this.isEditing) {
       this.isEditing = false
       this.seller = {} as ISeller
-      return
+    }else{
+      this.seller.id = this.idCounter + 1
+      this.sellers.push(this.seller)
+      this.seller = {} as ISeller
+      this.idCounter++
     }
-    this.sellers.push(this.seller)
-    this.seller = {} as ISeller
+    this.isFormtoBeShown = false
   }
   updateSeller(seller: ISeller) {
+    this.isFormtoBeShown = true
     this.seller = seller
     this.isEditing = true
+  }
+  cancel(){
+    this.seller = {} as ISeller
+    this.isFormtoBeShown = false
+  }
+  deleteSeller(seller: ISeller) {
+    this.sellers = this.sellers.filter(s => s.id !== seller.id)
   }
 }

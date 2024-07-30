@@ -26,7 +26,13 @@ export class SellerformComponent {
   @Output()
   saveEmmiter = new EventEmitter<ISeller>()
 
-  save() {
+  @Output()
+  cancelEmmiter = new EventEmitter<void>()
+
+  emmiteSave() {
     this.saveEmmiter.emit()
+  }
+  emmiteCancel() {
+    this.cancelEmmiter.emit()
   }
 }
