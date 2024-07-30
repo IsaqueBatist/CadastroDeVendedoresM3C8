@@ -1,7 +1,7 @@
-import { Component, Input } from '@angular/core';
-import { ISeller } from '../../interfaces/seller';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ISeller } from '../../types/seller';
 import { FormsModule } from '@angular/forms';
-import { IGender } from '../../interfaces/gender';
+import { IGender } from '../../types/gender';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,16 +18,15 @@ export class SellerformComponent {
 
 
   @Input()
-  seller: ISeller = {
-    id: 1,
-    name: 'Isaque',
-    salary: 1200,
-    gender: {
-      id: 1,
-      name: 'Masculino'
-    }
-  }
+  seller: ISeller = {} as ISeller
 
   @Input()
   genders: IGender[] = []
+
+  @Output()
+  saveEmmiter = new EventEmitter<ISeller>()
+
+  save() {
+    this.saveEmmiter.emit()
+  }
 }

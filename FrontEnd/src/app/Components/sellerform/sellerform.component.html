@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-6">
           <label for="inputState" class="form-label ">Gênero</label>
-          <select id="inputState" class="form-select innerShadow" name="gender" [(ngModel)] = "seller.gender.id">
+          <select id="inputState" class="form-select innerShadow" name="gender" [(ngModel)] = "seller.gender">
             <option selected value="0">Escolha...</option>
             <option *ngFor="let gender of genders" [ngValue]="gender">
               {{gender.name}}
@@ -23,8 +23,8 @@
           </select>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-success mt-3">Cadastrar</button>
-          <button type="submit" class="btn btn-danger mt-3 ms-2">Cancelar</button>
+          <button type="button" class="btn btn-success mt-3" (click)="save()">Cadastrar</button>
+          <button type="button" class="btn btn-danger mt-3 ms-2">Cancelar</button>
         </div>
       </form>
 

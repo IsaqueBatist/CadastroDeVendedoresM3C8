@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { SellerformComponent } from "../sellerform/sellerform.component";
-import { ISeller } from '../../interfaces/seller';
+import { ISeller } from '../../types/seller';
 import { CommonModule } from '@angular/common';
-import { IGender } from '../../interfaces/gender';
+import { IGender } from '../../types/gender';
 
 @Component({
   selector: 'app-seller',
@@ -29,4 +29,8 @@ export class SellerComponent {
     { id: 5, name: 'Seller 5', salary: 1300, gender: { id: 1, name: 'Maculino' } }
   ]
 
+  saveSeller() {
+    this.sellers.push(this.seller)
+    this.seller = {} as ISeller
+  }
 }
