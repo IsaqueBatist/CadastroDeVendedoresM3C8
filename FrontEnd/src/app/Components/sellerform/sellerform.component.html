@@ -7,18 +7,19 @@
       <form class="row g-3">
         <div class="col-md-12">
           <label for="inputEmail4" class="form-label">Nome</label>
-          <input type="text" class="form-control innerShadow" id="inputEmail4">
+          <input type="text" class="form-control innerShadow" id="inputName" name="name" [(ngModel)] = "seller.name">
         </div>
         <div class="col-md-6">
           <label for="inputPassword4" class="form-label">Salário</label>
-          <input type="number" class="form-control innerShadow" id="inputPassword4">
+          <input type="number" class="form-control innerShadow" name="salary" [(ngModel)] = "seller.salary" id="inputPassword4">
         </div>
         <div class="col-md-6">
           <label for="inputState" class="form-label ">Gênero</label>
-          <select id="inputState" class="form-select innerShadow">
+          <select id="inputState" class="form-select innerShadow" name="gender" [(ngModel)] = "seller.gender.id">
             <option selected value="0">Escolha...</option>
-            <option value="1">Masculino</option>
-            <option value="2">Feminino</option>
+            <option *ngFor="let gender of genders" [ngValue]="gender">
+              {{gender.name}}
+            </option>
           </select>
         </div>
         <div class="col-12">
