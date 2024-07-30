@@ -26,7 +26,7 @@
               <td>{{seller.salary}}</td>
               <td>{{seller.gender.name}}</td>
               <td class="text-center">
-                <button type="button" class="btn btn-outline-primary">
+                <button type="button" (click)="updateSeller(seller)" class="btn btn-outline-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path

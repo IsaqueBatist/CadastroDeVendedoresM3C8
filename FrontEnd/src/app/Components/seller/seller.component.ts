@@ -20,6 +20,7 @@ export class SellerComponent {
     { id: 1, name: 'Masculino' },
     { id: 2, name: 'Feminino' }
   ]
+  isEditing: boolean = false
 
   sellers: ISeller[] = [
     { id: 1, name: 'Seller 1', salary: 1000, gender: { id: 1, name: 'Maculino' } },
@@ -30,7 +31,16 @@ export class SellerComponent {
   ]
 
   saveSeller() {
+    if(this.isEditing) {
+      this.isEditing = false
+      this.seller = {} as ISeller
+      return
+    }
     this.sellers.push(this.seller)
     this.seller = {} as ISeller
+  }
+  updateSeller(seller: ISeller) {
+    this.seller = seller
+    this.isEditing = true
   }
 }
