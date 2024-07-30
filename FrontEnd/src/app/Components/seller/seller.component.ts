@@ -12,4 +12,6 @@ import { SellerformComponent } from "../sellerform/sellerform.component";
 })
 export class SellerComponent {
 
+  
+
 }
