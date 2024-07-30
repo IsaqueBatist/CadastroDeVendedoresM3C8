@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import dark.com.demo.Models.Gender;
 import dark.com.demo.Models.Seller;
 
 @RestController
