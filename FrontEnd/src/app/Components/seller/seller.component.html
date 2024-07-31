@@ -23,7 +23,7 @@
               <td>{{seller.name}}</td>
               <td></td>
               <td></td>
-              <td>{{seller.salary}}</td>
+              <td>{{seller.salary | currency: 'BRL'}}</td>
               <td>{{genders[seller.gender-1].name}}</td>
               <td class="text-center">
                 <button type="button" (click)="updateSeller(seller)" class="btn btn-outline-primary">
