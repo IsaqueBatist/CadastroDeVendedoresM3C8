@@ -17,12 +17,15 @@ export class SellerComponent {
 
   seller: ISeller = {} as ISeller
   idCounter: number = 5
+  isEditing: boolean = false
+  isFormtoBeShown: boolean = false
+  deletedSeller: ISeller = {} as ISeller
+
+
   genders: IGender[] = [
     { id: 1, name: 'Masculino' },
     { id: 2, name: 'Feminino' }
   ]
-  isEditing: boolean = false
-  isFormtoBeShown: boolean = false
   sellers: ISeller[] = [
     { id: 1, name: 'Seller 1', salary: 1000, gender: { id: 1, name: 'Maculino' } },
     { id: 2, name: 'Seller 2', salary: 1500, gender: { id: 2, name: 'Feminino' } },
@@ -53,6 +56,7 @@ export class SellerComponent {
     this.isFormtoBeShown = false
   }
   deleteSeller(seller: ISeller) {
-    this.sellers = this.sellers.filter(s => s.id !== seller.id)
+      this.deletedSeller = seller
+      this.sellers = this.sellers.filter(s => s.id !== seller.id)
   }
 }

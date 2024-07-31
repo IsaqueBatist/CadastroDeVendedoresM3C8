@@ -47,7 +47,7 @@ public class SellerController {
 
     @PostMapping("sellers")
     public ResponseEntity<Seller> save(@RequestBody Seller seller){
-      seller.setId(sellers.size() + 1);
+      seller.setId(Long.valueOf(sellers.size() + 1));
       sellers.add(seller);
 
       URI location = ServletUriComponentsBuilder
