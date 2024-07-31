@@ -27,11 +27,11 @@ export class SellerComponent {
     { id: 2, name: 'Feminino' }
   ]
   sellers: ISeller[] = [
-    { id: 1, name: 'Seller 1', salary: 1000, gender: { id: 1, name: 'Maculino' } },
-    { id: 2, name: 'Seller 2', salary: 1500, gender: { id: 2, name: 'Feminino' } },
-    { id: 3, name: 'Seller 3', salary: 2000, gender: { id: 1, name: 'Maculino' } },
-    { id: 4, name: 'Seller 4', salary: 1800, gender: { id: 2, name: 'Feminino' } },
-    { id: 5, name: 'Seller 5', salary: 1300, gender: { id: 1, name: 'Maculino' } }
+    { id: 1, name: 'Seller 1', salary: 1000, gender: 1 },
+    { id: 2, name: 'Seller 2', salary: 1500, gender: 2 },
+    { id: 3, name: 'Seller 3', salary: 2000, gender: 1 },
+    { id: 4, name: 'Seller 4', salary: 1800, gender: 2 },
+    { id: 5, name: 'Seller 5', salary: 1300, gender: 1 }
   ]
 
   saveSeller() {
@@ -40,11 +40,13 @@ export class SellerComponent {
       this.seller = {} as ISeller
     }else{
       this.seller.id = this.idCounter + 1
+      this.seller.gender = Number(this.seller.gender)
       this.sellers.push(this.seller)
       this.seller = {} as ISeller
       this.idCounter++
     }
     this.isFormtoBeShown = false
+    console.log(this.sellers)
   }
   updateSeller(seller: ISeller) {
     this.isFormtoBeShown = true

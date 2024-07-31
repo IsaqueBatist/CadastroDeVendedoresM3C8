@@ -1,7 +1,7 @@
 <div class="d-flex flex-column" style="height: 90vh; justify-content: center; align-items: center; background-image: url('https://img.freepik.com/free-vector/modern-abstract-white-minimal-background_84443-8335.jpg?t=st=1722366549~exp=1722370149~hmac=ecf29135daaafe79d0b000feca3c3e23871b26d0b51f55a4814a2f9755cafa7b&w=1380');">
 
   <app-sellerform *ngIf="isFormtoBeShown" class="w-30" style="height: 60%;" [seller]="seller" [genders]="genders" (saveEmmiter)="saveSeller()" (cancelEmmiter)="cancel()"></app-sellerform>
-  <div *ngIf="!isFormtoBeShown" class="bg-dark shadow p-5 text-white rounded d-flex flex-column justify-content-center" style="width: 800px;">
+  <div *ngIf="!isFormtoBeShown" class="bg-dark shadow p-5 text-white rounded-4 d-flex flex-column justify-content-center" style="width: 800px;">
     <div class="display-6 mb-4 text-center fw-semibold">
       Vendedores Cadastrados
     </div>
@@ -13,7 +13,7 @@
               <th scope="col">#</th>
               <th scope="col" colspan="3">Nome</th>
               <th scope="col">Salário</th>
-              <th scope="col">Genêro</th>
+              <th scope="col">Gênero</th>
               <th scope="col" class="text-center">Ações</th>
             </tr>
           </thead>
@@ -24,7 +24,7 @@
               <td></td>
               <td></td>
               <td>{{seller.salary}}</td>
-              <td>{{seller.gender.name}}</td>
+              <td>{{genders[seller.gender-1].name}}</td>
               <td class="text-center">
                 <button type="button" (click)="updateSeller(seller)" class="btn btn-outline-primary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
