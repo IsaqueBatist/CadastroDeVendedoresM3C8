@@ -1,4 +1,4 @@
-package dark.com.demo.Models;
+package dark.com.demo.models;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

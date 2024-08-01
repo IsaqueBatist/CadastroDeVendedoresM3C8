@@ -1,4 +1,4 @@
-package dark.com.demo.Controller;
+package dark.com.demo.controller;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import dark.com.demo.Models.Seller;
+import dark.com.demo.models.Seller;
 
 @RestController
 @CrossOrigin

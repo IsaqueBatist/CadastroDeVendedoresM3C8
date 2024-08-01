@@ -5,11 +5,16 @@ import { SellerformComponent } from "../sellerform/sellerform.component";
 import { ISeller } from '../../types/seller';
 import { CommonModule } from '@angular/common';
 import { IGender } from '../../types/gender';
-
+import {ReactiveFormsModule} from '@angular/forms';
 @Component({
   selector: 'app-seller',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, SellerformComponent, CommonModule],
+  imports: [
+    HeaderComponent,
+    FooterComponent,
+    SellerformComponent,
+    CommonModule
+          ],
   templateUrl: './seller.component.html',
   styleUrl: './seller.component.css'
 })
@@ -18,7 +23,7 @@ export class SellerComponent {
   seller: ISeller = {} as ISeller
   idCounter: number = 5
   isEditing: boolean = false
-  isFormtoBeShown: boolean = false
+  isFormtoBeShown: boolean = true
   deletedSeller: ISeller = {} as ISeller
 
 
@@ -40,7 +45,6 @@ export class SellerComponent {
       this.seller = {} as ISeller
     }else{
       this.seller.id = this.idCounter + 1
-      this.seller.gender = Number(this.seller.gender)
       this.sellers.push(this.seller)
       this.seller = {} as ISeller
       this.idCounter++
@@ -49,8 +53,8 @@ export class SellerComponent {
     console.log(this.sellers)
   }
   updateSeller(seller: ISeller) {
-    this.isFormtoBeShown = true
     this.seller = seller
+    this.isFormtoBeShown = true
     this.isEditing = true
   }
   cancel(){

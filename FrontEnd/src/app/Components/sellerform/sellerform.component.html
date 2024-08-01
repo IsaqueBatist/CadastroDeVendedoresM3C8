@@ -1,42 +1,50 @@
-<div class="d-flex flex-column justify-content-center bg-dark text-white p-3 rounded-4 shadow">
+<div class="d-flex flex-column justify-content-center bg-dark text-white p-3 rounded-4 shadow h-100">
   <div class="display-6 mb-2 text-center fw-semibold">
-    {{seller.id ? 'Editar' : 'Cadastrar'}} Vendedor
+    Formulário Vendedor
   </div>
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <form [ngClass]="seller.id? 'g-3' : 'row gap-3'" #SellerFrom="ngForm">
+      <form [className]="seller.id? 'gap-3':' row gap-3'" [formGroup]="formGroupSeller" #ngFormSeller="ngForm">
         <div class="row">
           <div *ngIf="seller.id" class="row mb-2">
             <div class="col-md-2">
               <label for="inputEmail4" class="form-label">ID</label>
-              <input type="text" class="form-control innerShadow disabled" id="inputId" name="id" [(ngModel)]="seller.id"
-                required readonly>
+              <input type="text" class="form-control innerShadow disabled" id="inputId" name="id" formControlName="id" readonly>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <label for="inputName" class="form-label">Nome</label>
-            <input type="text" class="form-control innerShadow" id="inputName" name="name" [(ngModel)]="seller.name"
-              required>
+            <input type="text" class="form-control innerShadow" id="inputName" name="name" formControlName="name">
+            <div *ngIf="ngFormSeller.submitted">
+              <small *ngIf="pfsName?.errors?.['required']" class="form-text text-danger">*Nome é requerido</small>
+              <small *ngIf="pfsName?.errors?.['minlength']" class="form-text text-danger">*Tamanho mínimo de 3 caracteres</small>
+            </div>
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Salário</label>
-            <input type="number" class="form-control innerShadow" name="salary" [(ngModel)]="seller.salary"
-              id="inputPassword4" required>
+            <input type="number" class="form-control innerShadow" name="salary" formControlName="salary"
+              id="inputPassword4" >
+            <div *ngIf="ngFormSeller.submitted">
+              <small *ngIf="pfsSalary?.errors?.['required']" class="form-text text-danger">*Salário é requerido</small>
+            </div>
           </div>
         </div>
         <div class="row mb-2">
           <div class="col-md-6">
             <label for="inputState" class="form-label ">Gênero</label>
-            <select id="inputState" class="form-select innerShadow" name="gender" [(ngModel)]="seller.gender" required>
+            <select id="inputState" class="form-select innerShadow" name="gender" formControlName="gender" >
               <option *ngFor="let gender of genders" value={{gender.id}}>
                 {{gender.name}}
               </option>
             </select>
+            <div *ngIf="ngFormSeller.submitted">  
+              <small *ngIf="pfsGender?.errors?.['required']" class="form-text text-danger">*Genero é requerido</small>
+            </div>
           </div>
         </div>
         <div class="col-12">
-          <button type="button" class="btn btn-success mt-3" (click)="emmiteSave()"
-            [disabled]="SellerFrom.invalid">Salvar</button>
+          <button type="submit" class="btn btn-success mt-3" (click)="emmiteSave()"
+          >Salvar</button>
           <button type="button" class="btn btn-danger mt-3 ms-2" (click)="emmiteCancel()">Cancelar</button>
         </div>
       </form>
