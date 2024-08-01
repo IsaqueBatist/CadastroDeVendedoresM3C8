@@ -22,7 +22,7 @@ export class SellerformComponent implements OnInit, OnChanges{
     this.formGroupSeller = this.formBuilder.group({
       id: {value: null, disable:true},
       name: ['', [Validators.required, Validators.minLength(3)]],
-      salary: ['', [Validators.required]],
+      salary: ['', [Validators.required, Validators.min(1000)]],
       gender: ['', [Validators.required]]
     })
   }
@@ -38,7 +38,8 @@ export class SellerformComponent implements OnInit, OnChanges{
   saveEmmiter = new EventEmitter<ISeller>()
 
   @Output()
-  cancelEmmiter = new EventEmitter()
+  returnEmmiter = new EventEmitter()
+
 
   ngOnChanges(): void {
     if(this.seller.id){
@@ -52,8 +53,12 @@ export class SellerformComponent implements OnInit, OnChanges{
     Object.assign(this.seller, this.formGroupSeller.value)
     this.saveEmmiter.emit()
   }
-  emmiteCancel() {
-    this.cancelEmmiter.emit()
+  cancelButton() {
+    this.formGroupSeller.reset()
+  }
+
+  emmiteReturn(){
+    this.returnEmmiter.emit()
   }
 
   get pfsName() {return this.formGroupSeller.get('name')}

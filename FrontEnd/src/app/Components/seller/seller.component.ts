@@ -5,7 +5,7 @@ import { SellerformComponent } from "../sellerform/sellerform.component";
 import { ISeller } from '../../types/seller';
 import { CommonModule } from '@angular/common';
 import { IGender } from '../../types/gender';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
   selector: 'app-seller',
   standalone: true,
@@ -14,7 +14,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     SellerformComponent,
     CommonModule
-          ],
+  ],
   templateUrl: './seller.component.html',
   styleUrl: './seller.component.css'
 })
@@ -40,10 +40,10 @@ export class SellerComponent {
   ]
 
   saveSeller() {
-    if(this.isEditing) {
+    if (this.isEditing) {
       this.isEditing = false
       this.seller = {} as ISeller
-    }else{
+    } else {
       this.seller.id = this.idCounter + 1
       this.sellers.push(this.seller)
       this.seller = {} as ISeller
@@ -57,12 +57,15 @@ export class SellerComponent {
     this.isFormtoBeShown = true
     this.isEditing = true
   }
-  cancel(){
-    this.seller = {} as ISeller
-    this.isFormtoBeShown = false
-  }
   deleteSeller(seller: ISeller) {
-      this.deletedSeller = seller
-      this.sellers = this.sellers.filter(s => s.id !== seller.id)
+    this.deletedSeller = seller
+    this.sellers = this.sellers.filter(s => s.id !== seller.id)
+  }
+  return() {
+    this.isFormtoBeShown = false
+    if (this.isEditing) {
+      this.isEditing = false
+    }
+    this.seller = {} as ISeller
   }
 }
