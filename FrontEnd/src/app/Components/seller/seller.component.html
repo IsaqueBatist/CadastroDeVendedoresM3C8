@@ -1,53 +1,49 @@
-<div class="d-flex flex-column" style="height: 90vh; justify-content: center; align-items: center; background-image: url('https://img.freepik.com/free-vector/modern-abstract-white-minimal-background_84443-8335.jpg?t=st=1722366549~exp=1722370149~hmac=ecf29135daaafe79d0b000feca3c3e23871b26d0b51f55a4814a2f9755cafa7b&w=1380');">
-
-  <app-sellerform *ngIf="isFormtoBeShown" class="w-30" style="height: 60%;" [seller]="seller" [genders]="genders" (saveEmmiter)="saveSeller($event)"></app-sellerform>
-  <div *ngIf="!isFormtoBeShown" class="bg-dark shadow p-5 text-white rounded-4 d-flex flex-column justify-content-center" style="width: 800px;">
-    <div class="display-6 mb-4 text-center fw-semibold">
-      Vendedores Cadastrados
-    </div>
-    <div class="row justify-content-center">
-      <div class=" ms-0 col-md-12 offset-md-1">
-        <table class="table table-striped table-hover text-white table-dark">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col" colspan="3">Nome</th>
-              <th scope="col">Salário</th>
-              <th scope="col">Gênero</th>
-              <th scope="col" class="text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let seller of sellers">
-              <th scope="row">{{seller.id}}</th>
-              <td>{{seller.name}}</td>
-              <td></td>
-              <td></td>
-              <td>{{seller.salary | currency: 'BRL'}}</td>
-              <td>{{genders[seller.gender-1].name}}</td>
-              <td class="text-center">
-                <button type="button" (click)="updateSeller(seller)" class="btn btn-outline-primary">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-pencil-square" viewBox="0 0 16 16">
-                    <path
-                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                    <path fill-rule="evenodd"
-                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
-                  </svg>
-                </button>
-                <button type="button" (click)="deleteSeller(seller)" class="btn btn-outline-danger ms-2">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                    class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                    <path
-                      d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                  </svg>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <button class="btn btn-light" (click)="isFormtoBeShown = true">Novo</button>
-      </div>
+<app-sellerform *ngIf="isFormtoBeShown" [seller]="seller" [genders]="genders"
+  (saveEmmiter)="saveSeller($event)"></app-sellerform>
+<div *ngIf="!isFormtoBeShown" class="bg-dark shadow p-5 text-white rounded-4 d-flex flex-column justify-content-center">
+  <div class="display-6 mb-4 text-center fw-semibold">
+    Vendedores Cadastrados
+  </div>
+  <div class="row justify-content-center">
+    <div class=" ms-0 col-md-12 offset-md-1">
+      <table class="table table-striped table-hover text-white table-dark">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col" class="d-none d-md-table-cell">Salário</th>
+            <th scope="col" class="d-none d-md-table-cell">Gênero</th>
+            <th scope="col" class="text-center">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let seller of sellers">
+            <th scope="row">{{seller.id}}</th>
+            <td>{{seller.name}}</td>
+            <td class="d-none d-md-table-cell">{{seller.salary | currency: 'BRL'}}</td>
+            <td class="d-none d-md-table-cell">{{genders[seller.gender-1].name}}</td>
+            <td class="text-center">
+              <button type="button" (click)="updateSeller(seller)" class="btn btn-outline-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-pencil-square" viewBox="0 0 16 16">
+                  <path
+                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                  <path fill-rule="evenodd"
+                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+                </svg>
+              </button>
+              <button type="button" (click)="deleteSeller(seller)" class="btn btn-outline-danger ms-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                  class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                  <path
+                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn btn-light" (click)="isFormtoBeShown = true">Novo</button>
     </div>
   </div>
 </div>

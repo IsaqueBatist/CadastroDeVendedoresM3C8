@@ -19,3 +19,11 @@ input[type=number] {
     appearance: textfield;
 
 }
+.boxcontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    background: white url('https://img.freepik.com/free-vector/modern-abstract-white-minimal-background_84443-8335.jpg?t=st=1722366549~exp=1722370149~hmac=ecf29135daaafe79d0b000feca3c3e23871b26d0b51f55a4814a2f9755cafa7b&w=1380') no-repeat center;
+    background-size: cover;
+}

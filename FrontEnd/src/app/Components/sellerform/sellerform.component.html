@@ -1,10 +1,10 @@
-<div class="d-flex flex-column justify-content-center bg-dark text-white p-3 rounded-4 shadow h-100">
+<div class="d-flex flex-column justify-content-center bg-dark text-white p-3 rounded-4 shadow">
   <div class="display-6 mb-2 text-center fw-semibold">
     {{seller.id? 'Editar Vendedor': 'Novo Vendedor'}}
   </div>
   <div class="row">
     <div class="col-md-10 offset-md-1">
-      <form [className]="seller.id? 'gap-3':' row gap-3'" [formGroup]="formGroupSeller" #ngFormSeller="ngForm">
+      <form class="" [formGroup]="formGroupSeller" #ngFormSeller="ngForm">
         <div class="row">
           <div *ngIf="seller.id" class="row mb-2">
             <div class="col-md-2">

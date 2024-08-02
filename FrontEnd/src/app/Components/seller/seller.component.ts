@@ -3,12 +3,15 @@ import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { SellerformComponent } from "../sellerform/sellerform.component";
 import { ISeller } from '../../types/seller';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { IGender } from '../../types/gender';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SellerService } from '../../service/seller.service'
 import { HttpClientModule } from '@angular/common/http';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt, 'pt');
 
 @Component({
   selector: 'app-seller',
@@ -21,7 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [SellerService],
+  providers: [
+    SellerService,
+    {provide: LOCALE_ID, useValue: 'pt-BR'}
+  ],
+
   templateUrl: './seller.component.html',
   styleUrl: './seller.component.css'
 })
