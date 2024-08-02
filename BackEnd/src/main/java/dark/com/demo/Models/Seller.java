@@ -6,6 +6,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import dark.com.demo.dto.SellerResponse;
+
 import javax.persistence.Column;
 
 @Entity
@@ -66,5 +69,16 @@ public class Seller implements Serializable {
 
   public void setGender(Integer gender) {
     this.gender = gender;
+  }
+
+
+  public SellerResponse toDTO() {
+    SellerResponse sellerResponse = new SellerResponse();
+    sellerResponse.setId(id);
+    sellerResponse.setName(name);
+    sellerResponse.setSalary(salary);
+    sellerResponse.setGender(gender);
+  
+    return sellerResponse;
   }
 }
