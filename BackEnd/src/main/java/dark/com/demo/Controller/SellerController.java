@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,7 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import dark.com.demo.models.Seller;
 
 @RestController
-@CrossOrigin
+@RequestMapping("sellers")
 public class SellerController {
   
   private List<Seller> sellers = new ArrayList<Seller>();
@@ -31,12 +31,12 @@ public class SellerController {
   //   new Seller(4, "Jane Smith", 4000.0, 0)
   // );
 
-  @GetMapping("sellers")
+  @GetMapping
   public List<Seller> getSellers(){
     return sellers;
   }
 
-  @GetMapping("sellers/{id}")
+  @GetMapping("{id}")
   public ResponseEntity<Seller> getSeller(@PathVariable Long id){
       Seller seller = sellers.stream()
                       .filter(s -> s.getId() == id)
@@ -45,7 +45,7 @@ public class SellerController {
       return ResponseEntity.ok(seller);
     }
 
-    @PostMapping("sellers")
+    @PostMapping
     public ResponseEntity<Seller> save(@RequestBody Seller seller){
       seller.setId(Long.valueOf(sellers.size() + 1));
       sellers.add(seller);
@@ -59,17 +59,17 @@ public class SellerController {
     return ResponseEntity.created(location).body(seller);
     }
   
-    @DeleteMapping("sellers/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-      Seller seller = sellers.stream()
-                      .filter(s -> s.getId() == id)
-                      .findFirst()
-                      .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found"));
-      sellers.remove(seller);
-      return ResponseEntity.noContent().build();
-    }
+    // @DeleteMapping("{id}")
+    // public ResponseEntity<Void> delete(@PathVariable Long id){
+    //   Seller seller = sellers.stream()
+    //                   .filter(s -> s.getId() == id)
+    //                   .findFirst()
+    //                   .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found"));
+    //   sellers.remove(seller);
+    //   return ResponseEntity.noContent().build();
+    // }
 
-    @PutMapping("sellers/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<Seller> update(@PathVariable Long id, @RequestBody Seller sellerUpdate){
       Seller newSellerInfo = sellers.stream()
                       .filter(s -> s.getId() == id)
