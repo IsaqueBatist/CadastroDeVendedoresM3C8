@@ -1,6 +1,6 @@
 <div class="d-flex flex-column" style="height: 90vh; justify-content: center; align-items: center; background-image: url('https://img.freepik.com/free-vector/modern-abstract-white-minimal-background_84443-8335.jpg?t=st=1722366549~exp=1722370149~hmac=ecf29135daaafe79d0b000feca3c3e23871b26d0b51f55a4814a2f9755cafa7b&w=1380');">
 
-  <app-sellerform *ngIf="isFormtoBeShown" class="w-30" style="height: 60%;" [seller]="seller" [genders]="genders" (saveEmmiter)="saveSeller()" (returnEmmiter)="return()"></app-sellerform>
+  <app-sellerform *ngIf="isFormtoBeShown" class="w-30" style="height: 60%;" [seller]="seller" [genders]="genders" (saveEmmiter)="saveSeller($event)"></app-sellerform>
   <div *ngIf="!isFormtoBeShown" class="bg-dark shadow p-5 text-white rounded-4 d-flex flex-column justify-content-center" style="width: 800px;">
     <div class="display-6 mb-4 text-center fw-semibold">
       Vendedores Cadastrados

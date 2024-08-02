@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { FooterComponent } from "../footer/footer.component";
 import { SellerformComponent } from "../sellerform/sellerform.component";
@@ -6,6 +6,10 @@ import { ISeller } from '../../types/seller';
 import { CommonModule } from '@angular/common';
 import { IGender } from '../../types/gender';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SellerService } from '../../service/seller.service'
+import { HttpClientModule } from '@angular/common/http';
+
+
 @Component({
   selector: 'app-seller',
   standalone: true,
@@ -13,12 +17,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     SellerformComponent,
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
+  providers: [SellerService],
   templateUrl: './seller.component.html',
   styleUrl: './seller.component.css'
 })
-export class SellerComponent {
+export class SellerComponent implements OnInit {
+
+  constructor(private sellerService: SellerService) { }
 
   seller: ISeller = {} as ISeller
   idCounter: number = 5
@@ -31,41 +40,48 @@ export class SellerComponent {
     { id: 1, name: 'Masculino' },
     { id: 2, name: 'Feminino' }
   ]
-  sellers: ISeller[] = [
-    { id: 1, name: 'Seller 1', salary: 1000, gender: 1 },
-    { id: 2, name: 'Seller 2', salary: 1500, gender: 2 },
-    { id: 3, name: 'Seller 3', salary: 2000, gender: 1 },
-    { id: 4, name: 'Seller 4', salary: 1800, gender: 2 },
-    { id: 5, name: 'Seller 5', salary: 1300, gender: 1 }
-  ]
+  sellers: ISeller[] = []
 
-  saveSeller() {
-    if (this.isEditing) {
-      this.isEditing = false
-      this.seller = {} as ISeller
-    } else {
-      this.seller.id = this.idCounter + 1
-      this.sellers.push(this.seller)
-      this.seller = {} as ISeller
-      this.idCounter++
+  loadSeller() {
+    this.sellerService.getSellers().subscribe({
+      next: (data: ISeller[]) => {
+        this.sellers = data
+      },
+    })
+  }
+
+  ngOnInit() {
+    this.loadSeller();
+  }
+
+  saveSeller(save: boolean) {
+    if (save) {
+      if (this.isEditing) {
+        this.sellerService.updateSeller(this.seller).subscribe()
+      } else {
+        this.sellerService.saveSllers(this.seller).subscribe(({
+          next: (data: ISeller) => {
+            this.sellers.push(data)
+            this.seller = {} as ISeller
+          }
+        }))
+      }
     }
+    this.seller = {} as ISeller
+    this.isEditing = false
     this.isFormtoBeShown = false
-    console.log(this.sellers)
   }
   updateSeller(seller: ISeller) {
     this.seller = seller
-    this.isFormtoBeShown = true
     this.isEditing = true
+    this.isFormtoBeShown = true
   }
   deleteSeller(seller: ISeller) {
-    this.deletedSeller = seller
-    this.sellers = this.sellers.filter(s => s.id !== seller.id)
-  }
-  return() {
-    this.isFormtoBeShown = false
-    if (this.isEditing) {
-      this.isEditing = false
-    }
-    this.seller = {} as ISeller
+    this.sellerService.deleteSeller(seller).subscribe({
+      next: () => {
+        this.deletedSeller = seller
+        this.sellers = this.sellers.filter(s => s.id !== this.deletedSeller.id)
+      }
+    })
   }
 }

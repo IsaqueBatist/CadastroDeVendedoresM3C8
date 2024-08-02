@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms'
 import { IGender } from '../../types/gender';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SellerService } from '../../service/seller.service';
 
 @Component({
   selector: 'app-sellerform',
@@ -11,8 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
+  providers: [SellerService],
   templateUrl: './sellerform.component.html',
   styleUrl: './sellerform.component.css'
 })
@@ -35,10 +39,7 @@ export class SellerformComponent implements OnInit, OnChanges{
   genders: IGender[] = []
 
   @Output()
-  saveEmmiter = new EventEmitter<ISeller>()
-
-  @Output()
-  returnEmmiter = new EventEmitter()
+  saveEmmiter = new EventEmitter()
 
 
   ngOnChanges(): void {
@@ -51,14 +52,11 @@ export class SellerformComponent implements OnInit, OnChanges{
   emmiteSave() {
     if(this.formGroupSeller.invalid) return
     Object.assign(this.seller, this.formGroupSeller.value)
-    this.saveEmmiter.emit()
+    this.saveEmmiter.emit(true)
   }
   cancelButton() {
     this.formGroupSeller.reset()
-  }
-
-  emmiteReturn(){
-    this.returnEmmiter.emit()
+    this.saveEmmiter.emit(false)
   }
 
   get pfsName() {return this.formGroupSeller.get('name')}
