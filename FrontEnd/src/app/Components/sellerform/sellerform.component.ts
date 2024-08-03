@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, OnChanges, OnInit, Output } from '@angular/core';
 import { ISeller } from '../../types/seller';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { IGender } from '../../types/gender';
@@ -7,6 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SellerService } from '../../service/seller.service';
 
+
 @Component({
   selector: 'app-sellerform',
   standalone: true,
@@ -14,9 +15,11 @@ import { SellerService } from '../../service/seller.service';
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [SellerService],
+  providers: [
+    SellerService,  
+  ],
   templateUrl: './sellerform.component.html',
   styleUrl: './sellerform.component.css'
 })

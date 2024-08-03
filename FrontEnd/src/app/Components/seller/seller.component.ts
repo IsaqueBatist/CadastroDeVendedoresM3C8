@@ -10,6 +10,7 @@ import { SellerService } from '../../service/seller.service'
 import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localePt, 'pt');
 
@@ -22,11 +23,12 @@ registerLocaleData(localePt, 'pt');
     SellerformComponent,
     CommonModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     SellerService,
-    {provide: LOCALE_ID, useValue: 'pt-BR'}
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    NgbModal
   ],
 
   templateUrl: './seller.component.html',
@@ -34,7 +36,7 @@ registerLocaleData(localePt, 'pt');
 })
 export class SellerComponent implements OnInit {
 
-  constructor(private sellerService: SellerService) { }
+  constructor(private sellerService: SellerService, private modalService: NgbModal) { }
 
   seller: ISeller = {} as ISeller
   idCounter: number = 5
@@ -83,12 +85,18 @@ export class SellerComponent implements OnInit {
     this.isEditing = true
     this.isFormtoBeShown = true
   }
-  deleteSeller(seller: ISeller) {
-    this.sellerService.deleteSeller(seller).subscribe({
-      next: () => {
-        this.deletedSeller = seller
-        this.sellers = this.sellers.filter(s => s.id !== this.deletedSeller.id)
+  deleteSeller(modal: any, seller: ISeller) {
+    this.deletedSeller = seller
+    this.modalService.open(modal).result.then(
+      (confirm) => {
+        if (confirm) {
+          this.sellerService.deleteSeller(seller).subscribe({
+            next: () => {
+              this.sellers = this.sellers.filter(s => seller.id !== s.id)
+            }
+          })
+        }
       }
-    })
+    )
   }
 }
