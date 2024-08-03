@@ -1,4 +1,4 @@
-package dark.com.demo.controller;
+package dark.com.demo.services;
 
 import java.net.URI;
 import java.util.List;
@@ -20,8 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import dark.com.demo.dto.SellerRequest;
 import dark.com.demo.dto.SellerResponse;
-import dark.com.demo.models.Seller;
-import dark.com.demo.services.SellerService;
+import dark.com.demo.resources.SellerService;
 
 @RestController
 @CrossOrigin
@@ -38,7 +37,7 @@ public class SellerController {
 
   @GetMapping("{id}")
   public ResponseEntity<SellerResponse> getSeller(@PathVariable Long id) {
-    SellerResponse seller = sellerService.getDTOSellerById(id);
+    SellerResponse seller = sellerService.getSellerById(id);
     return ResponseEntity.ok(seller);
   }
 
@@ -62,7 +61,7 @@ public class SellerController {
   }
 
   @PutMapping("{id}")
-  public ResponseEntity<SellerResponse> update(@PathVariable Long id, @Valid @RequestBody Seller sellerUpdate) {
+  public ResponseEntity<Void> update(@PathVariable Long id, @Valid @RequestBody SellerRequest sellerUpdate) {
     sellerService.updateSeller(id, sellerUpdate);
     return ResponseEntity.ok().build();
   }
