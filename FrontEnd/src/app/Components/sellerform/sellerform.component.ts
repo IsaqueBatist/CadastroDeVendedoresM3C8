@@ -30,7 +30,8 @@ export class SellerformComponent implements OnInit, OnChanges{
       id: {value: null, disable:true},
       name: ['', [Validators.required, Validators.minLength(3)]],
       salary: ['', [Validators.required, Validators.min(1000)]],
-      gender: ['', [Validators.required]]
+      gender: ['', [Validators.required]],
+      bonus: ['', [Validators.required, Validators.min(0), Validators.max(100)]],
     })
   }
   formGroupSeller: FormGroup;
@@ -65,4 +66,5 @@ export class SellerformComponent implements OnInit, OnChanges{
   get pfsName() {return this.formGroupSeller.get('name')}
   get pfsSalary() {return this.formGroupSeller.get('salary')}
   get pfsGender() {return this.formGroupSeller.get('gender')}
+  get pfsBonus() {return this.formGroupSeller.get('bonus')}
 }

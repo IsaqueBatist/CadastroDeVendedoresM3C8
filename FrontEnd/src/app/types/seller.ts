@@ -3,4 +3,5 @@ export interface ISeller {
   name: string
   salary: number;
   gender: number;
+  bonus: number;
 }

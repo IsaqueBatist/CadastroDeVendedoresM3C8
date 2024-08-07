@@ -43,6 +43,15 @@
               <small *ngIf="pfsGender?.errors?.['required']" class="form-text text-danger">*Genero é requerido</small>
             </div>
           </div>
+          <div class="col-md-6 mb-2">
+            <label for="inputbonus" class="form-label">Bonus</label>
+            <input type="number" class="form-control innerShadow" id="inputbonus" name="bonus" formControlName="bonus">
+            <div *ngIf="ngFormSeller.submitted">
+              <small *ngIf="pfsBonus?.errors?.['required']" class="form-text text-danger">*Campo Requerido</small>
+              <small *ngIf="pfsBonus?.errors?.['min']" class="form-text text-danger">*Valor precisa ser maior que 0</small>
+              <small *ngIf="pfsBonus?.errors?.['max']" class="form-text text-danger">*Valor máximo de 100</small>
+            </div>
+          </div>
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-success mt-3" (click)="emmiteSave()"
