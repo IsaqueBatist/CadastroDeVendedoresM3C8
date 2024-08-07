@@ -20,6 +20,10 @@ public class SellerRequest {
   @Max(value = 2, message = "Gender must be 1 (Male) or 2 (Female)")
   private Integer gender;
 
+  @Min(value = 0, message = "Bonus must be greater than 0")
+  @Max(value = 100, message = "Bonus must be less than 100")
+  private Double bonus;
+
 
   // Getters and setters
 
@@ -30,6 +34,8 @@ public class SellerRequest {
   public void setName(String name) {
     this.name = name;
   }
+
+  
 
   public Double getSalary() {
     return salary;
@@ -47,11 +53,20 @@ public class SellerRequest {
     this.gender = gender;
   }
 
+  public Double getBonus() {
+    return bonus;
+  }
+
+  public void setBonus(Double bonus) {
+    this.bonus = bonus;
+  }
+
   public Seller toEnity() {
     Seller seller = new Seller();
     seller.setName(name);
     seller.setSalary(salary);
     seller.setGender(gender);
+    seller.setBonus(bonus);
 
     return seller;
   }

@@ -11,6 +11,7 @@
   Id | Long
   name | String
   salary | Double
+  bonus | Double
   gender | Integer
 
   

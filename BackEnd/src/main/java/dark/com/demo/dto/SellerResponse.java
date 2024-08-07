@@ -5,6 +5,7 @@ public class SellerResponse {
     private Long id;
     private String name;
     private Double salary;
+    private Double bonus;
     private Integer gender;
     
     public Long getId() {
@@ -31,6 +32,10 @@ public class SellerResponse {
     public void setGender(Integer gender) {
       this.gender = gender;
     }
-
-    
+    public Double getBonus() {
+      return bonus;
+    }
+    public void setBonus(Double bonus) {
+      this.bonus = bonus;
+    }
 }

@@ -1,8 +1,5 @@
 package dark.com.demo.resources;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +23,7 @@ public class SellerService {
 
   public SellerResponse getSellerById(Long id) {
     Seller seller = sellerRepository.findById(id)
-        .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Seller not found"));
+        .orElseThrow(() -> new EntityNotFoundException("Seller not found"));
     return seller.toDTO();
   }
 
@@ -57,6 +54,7 @@ public class SellerService {
       seller.setName(sellerUpdate.getName());
       seller.setSalary(sellerUpdate.getSalary());
       seller.setGender(sellerUpdate.getGender());
+      seller.setBonus(sellerUpdate.getBonus());
       sellerRepository.save(seller);
     } catch (EntityNotFoundException e) {
       throw new EntityNotFoundException("Seller not found");

@@ -25,20 +25,33 @@ public class Seller implements Serializable {
   @Column(name = "salary")
   private Double salary;
 
+  @Column(name = "bonus")
+  private Double bonus;
+
   @Column(name = "gender")
   private Integer gender;
 
   public Seller() {
   }
 
-  public Seller(Long id, String name, Double salary, Integer gender) {
+  public Seller(Long id, String name, Double salary, Integer gender, Double bonus) {
     this.id = id;
     this.name = name;
     this.salary = salary;
     this.gender = gender;
+    this.bonus = bonus;
   }
 
   // Getters and setters
+
+  public Double getBonus() {
+    return bonus;
+  }
+
+  public void setBonus(Double bonus) {
+    this.bonus = bonus;
+  }
+
   public Long getId() {
     return id;
   }
@@ -78,6 +91,7 @@ public class Seller implements Serializable {
     sellerResponse.setName(name);
     sellerResponse.setSalary(salary);
     sellerResponse.setGender(gender);
+    sellerResponse.setBonus(bonus);
   
     return sellerResponse;
   }
