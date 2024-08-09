@@ -13,7 +13,7 @@
             <th scope="col">Nome</th>
             <th scope="col" class="d-none d-md-table-cell">Salário</th>
             <th scope="col" class="d-none d-md-table-cell">Gênero</th>
-            <th scope="col" class="d-none d-md-table-cell">Bonus</th>
+            <th scope="col" class="d-none d-md-table-cell">Bonus %</th>
             <th scope="col" class="text-center">Ações</th>
           </tr>
         </thead>
@@ -23,7 +23,7 @@
             <td>{{seller.name}}</td>
             <td class="d-none d-md-table-cell">{{seller.salary | currency: 'BRL'}}</td>
             <td class="d-none d-md-table-cell">{{genders[seller.gender-1].name}}</td>
-            <td class="d-none d-md-table-cell">{{seller.bonus}}</td>
+            <td class="d-none d-md-table-cell text-center">{{seller.bonus}}</td>
             <td class="text-center">
               <button type="button" (click)="updateSeller(seller)" class="btn btn-outline-primary">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
