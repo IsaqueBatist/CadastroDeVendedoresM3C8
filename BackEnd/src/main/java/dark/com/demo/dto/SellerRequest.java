@@ -5,10 +5,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import dark.com.demo.models.Seller;
+import dark.com.demo.model.Seller;
 
 public class SellerRequest {
-  
+
   @NotBlank(message = "Name can't be blank")
   @Size(min = 3, max = 255, message = "name must have between 3 and 255 characters")
   private String name;
@@ -24,7 +24,6 @@ public class SellerRequest {
   @Max(value = 100, message = "Bonus must be less than 100")
   private Double bonus;
 
-
   // Getters and setters
 
   public String getName() {
@@ -34,8 +33,6 @@ public class SellerRequest {
   public void setName(String name) {
     this.name = name;
   }
-
-  
 
   public Double getSalary() {
     return salary;

@@ -1,4 +1,4 @@
-package dark.com.demo.models;
+package dark.com.demo.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -84,7 +84,6 @@ public class Seller implements Serializable {
     this.gender = gender;
   }
 
-
   public SellerResponse toDTO() {
     SellerResponse sellerResponse = new SellerResponse();
     sellerResponse.setId(id);
@@ -92,7 +91,7 @@ public class Seller implements Serializable {
     sellerResponse.setSalary(salary);
     sellerResponse.setGender(gender);
     sellerResponse.setBonus(bonus);
-  
+
     return sellerResponse;
   }
 }

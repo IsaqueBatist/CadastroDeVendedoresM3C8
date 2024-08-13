@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import dark.com.demo.dto.SellerRequest;
 import dark.com.demo.dto.SellerResponse;
-import dark.com.demo.models.Seller;
+import dark.com.demo.model.Seller;
 import dark.com.demo.repositories.SellerRepository;
 
 @Service
@@ -35,8 +35,8 @@ public class SellerService {
   }
 
   public SellerResponse saveSeller(SellerRequest sellerRequest) {
-      Seller sellerEntity = sellerRepository.save(sellerRequest.toEnity());
-      return sellerEntity.toDTO();
+    Seller sellerEntity = sellerRepository.save(sellerRequest.toEnity());
+    return sellerEntity.toDTO();
   }
 
   public void deleteSellerByID(Long id) {
